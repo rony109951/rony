@@ -1,71 +1,51 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>الهكر العربي روني البحيره</title>
-  <style>
-    body { background:#111; color:#fff; font-family:'Cairo',sans-serif; margin:0; padding:20px; }
-    h1,h2 { color:#0ff; }
-    button { background:#0f0; color:#000; border:none; padding:10px; cursor:pointer; margin:8px 0; border-radius:6px; }
-    input, textarea { width:100%; padding:8px; margin:8px 0; border:none; border-radius:4px; }
-    .section { background:#222; padding:20px; border-radius:8px; margin-bottom:20px; }
-    .download-link { color:#0f0; text-decoration:underline; display:block; margin:5px 0; }
-    iframe, video { width:100%; margin-top:10px; border-radius:6px; }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الهكر العربي – الصفحة الرئيسية</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- أيقونات Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
-<h1>🚀 الهكر العربي – روني البحيره</h1>
+  <!-- زرار القائمة -->
+  <div id="menu-btn" class="menu-btn">
+    <i class="fas fa-bars"></i>
+  </div>
 
-<div class="section">
-  <h2>📁 تحميل الملفات</h2>
-  <input id="fileInput" type="file">
-  <input id="fileName" placeholder="اكتب اسم الملف">
-  <button onclick="uploadFile()">رفع ملف جديد</button>
-  <div id="filesList"></div>
-</div>
+  <!-- القائمة الجانبية -->
+  <nav id="side-menu" class="side-menu">
+    <a href="index.html">الرئيسية</a>
+    <a href="about.html">معلومات عنا</a>
+    <a href="contact.html">اتصل بنا</a>
+    <a href="privacy.html">سياسة الخصوصية</a>
+    <a href="https://t.me/YOUR_TELEGRAM" target="_blank" class="telegram-btn">
+      <i class="fab fa-telegram"></i> تيلجرام
+    </a>
+  </nav>
 
-<div class="section">
-  <h2>🎬 فيديو اليوم</h2>
-  <input id="videoUrl" placeholder="ضع رابط فيديو MP4 أو YouTube">
-  <textarea id="videoDesc" rows="3" placeholder="اكتب وصف الفيديو"></textarea>
-  <button onclick="showVideo()">اضغط للمشاهدة</button>
-  <div id="videoBox"></div>
-  <div id="descBox" style="margin-top:10px"></div>
-</div>
+  <!-- خلفية الفيديو -->
+  <section class="hero">
+    <video autoplay muted loop id="bg-video">
+      <source src="video.mp4" type="video/mp4">
+      متصفحك لا يدعم الفيديو
+    </video>
+    <div class="hero-content">
+      <h1>Welcome To Arab Hacking</h1>
+      <p>مصدر المعرفة في العالم الرقمي – اكتشف الأدوات وتعلم تقنيات الهكر الأخلاقي والأمن السيبراني</p>
+      <div class="buttons">
+        <a href="https://whatsapp.com/channel/0029Vb66boW4CrfnqaLzRv2A" target="_blank" class="btn">زيارة القناة (واتساب)</a>
+        <a href="https://youtube.com/@vlp_l1902?si=xobLyUDkN15r8koD" target="_blank" class="btn">زيارة القناة (يوتيوب)</a>
+      </div>
+    </div>
+  </section>
 
-<script>
-const filesList = document.getElementById('filesList');
-const fileInput = document.getElementById('fileInput');
-const fileName = document.getElementById('fileName');
-const videoUrl = document.getElementById('videoUrl');
-const videoDesc = document.getElementById('videoDesc');
-const videoBox = document.getElementById('videoBox');
-const descBox = document.getElementById('descBox');
-
-function uploadFile() {
-  const file = fileInput.files[0];
-  const name = fileName.value.trim();
-  if (!file || !name) return alert('اختر ملفًا واكتب اسمًا!');
-  const reader = new FileReader();
-  reader.onload = () => {
-    const dataUrl = reader.result;
-    const link = document.createElement('a');
-    link.href = dataUrl;
-    link.download = file.name;
-    link.textContent = 'تحميل ' + name;
-    link.className = 'download-link';
-    filesList.appendChild(link);
-    fileName.value = '';
-    fileInput.value = '';
-  };
-  reader.readAsDataURL(file);
-}
-
-function showVideo() {
-  const url = videoUrl.value.trim();
-  const desc = videoDesc.value.trim();
+  <script src="script.js"></script>
+</body>
+</html>
+    const desc = videoDesc.value.trim();
   if (!url) return alert('ادخل رابط الفيديو أولًا');
   let el = '';
   if (url.includes('youtube.com') || url.includes('youtu.be')) {
